@@ -20,8 +20,8 @@ public class characterSelection : MonoBehaviour
 	public GameObject[] characterList;
 	public int index;
 
-	public KeyCode rightToggleButton;
-	public KeyCode leftToggleButton;
+	public string horizontalAxis;
+	public bool next;
 
 	public KeyCode confirmedCharacterSelection;
 	public bool characterSelected;
@@ -82,11 +82,12 @@ public class characterSelection : MonoBehaviour
 
 	void RightToggle()
 	{
-		if(Input.GetKeyDown(rightToggleButton) && lockSelection == false)
+		if(Input.GetAxis(horizontalAxis) > 0.5 && next == false)
 		{
 			characterList[index].SetActive(false);
 
 			index += 1;
+			next = true;
 
 			if(index > characterList.Length - 1)
 			{
@@ -95,15 +96,20 @@ public class characterSelection : MonoBehaviour
 
 			characterList[index].SetActive(true);
 		}
+		if(Input.GetAxis(horizontalAxis) < 0.5 && Input.GetAxis(horizontalAxis) > 0 && next == true)
+		{
+			next = false;
+		}
 	}
 
 	void LeftToggle()
 	{
-		if(Input.GetKeyDown(leftToggleButton) && lockSelection == false)
+		if(Input.GetAxis(horizontalAxis) < -0.5 && next == false)
 		{
 			characterList[index].SetActive(false);
 
 			index -= 1;
+			next = true;
 
 			if(index < 0)
 			{
@@ -111,6 +117,10 @@ public class characterSelection : MonoBehaviour
 			}
 
 			characterList[index].SetActive(true);
+		}
+		if(Input.GetAxis(horizontalAxis) > -0.5 && Input.GetAxis(horizontalAxis) < 0 && next == true)
+		{
+			next = false;
 		}
 	}
 

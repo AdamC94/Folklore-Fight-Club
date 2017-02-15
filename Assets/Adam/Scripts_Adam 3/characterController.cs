@@ -20,6 +20,8 @@ public class characterController : MonoBehaviour
 	public string horizontalAxis;
 	public float movementSpeed;
 
+	public bool grounded;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -28,7 +30,16 @@ public class characterController : MonoBehaviour
 
 		trigs = new bool[animStrings.Length];
 	}
-	
+
+
+	void OnCollisionEnter(Collision other)
+	{
+		if(other.gameObject.tag == "Ground")
+		{
+			grounded = true;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -65,10 +76,11 @@ public class characterController : MonoBehaviour
 			anim.SetBool(animStrings[1], true);
 		}
 
-		if(Input.GetKeyDown(jumpButton))
+		if(Input.GetKeyDown(jumpButton) && grounded == true)
 		{
 			myRB.AddForce(transform.up * jumpForce);
 			anim.SetBool(animStrings[2], true);
+			grounded = false;
 		}
 	}
 }
