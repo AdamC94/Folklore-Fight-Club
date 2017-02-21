@@ -82,45 +82,51 @@ public class characterSelection : MonoBehaviour
 
 	void RightToggle()
 	{
-		if(Input.GetAxis(horizontalAxis) > 0.5 && next == false)
+		if(inMenu == true)
 		{
-			characterList[index].SetActive(false);
-
-			index += 1;
-			next = true;
-
-			if(index > characterList.Length - 1)
+			if(Input.GetAxis(horizontalAxis) > 0.5 && next == false && lockSelection == false)
 			{
-				index = 0;
-			}
+				characterList[index].SetActive(false);
 
-			characterList[index].SetActive(true);
-		}
-		if(Input.GetAxis(horizontalAxis) < 0.5 && Input.GetAxis(horizontalAxis) > 0 && next == true)
-		{
-			next = false;
+				index += 1;
+				next = true;
+
+				if(index > characterList.Length - 1)
+				{
+					index = 0;
+				}
+
+				characterList[index].SetActive(true);
+			}
+			if(Input.GetAxis(horizontalAxis) < 0.5 && Input.GetAxis(horizontalAxis) > 0 && next == true && lockSelection == false)
+			{
+				next = false;
+			}
 		}
 	}
 
 	void LeftToggle()
 	{
-		if(Input.GetAxis(horizontalAxis) < -0.5 && next == false)
+		if(inMenu == true)
 		{
-			characterList[index].SetActive(false);
-
-			index -= 1;
-			next = true;
-
-			if(index < 0)
+			if(Input.GetAxis(horizontalAxis) < -0.5 && next == false && lockSelection == false)
 			{
-				index = characterList.Length - 1;
-			}
+				characterList[index].SetActive(false);
 
-			characterList[index].SetActive(true);
-		}
-		if(Input.GetAxis(horizontalAxis) > -0.5 && Input.GetAxis(horizontalAxis) < 0 && next == true)
-		{
-			next = false;
+				index -= 1;
+				next = true;
+
+				if(index < 0)
+				{
+					index = characterList.Length - 1;
+				}
+
+				characterList[index].SetActive(true);
+			}
+			if(Input.GetAxis(horizontalAxis) > -0.5 && Input.GetAxis(horizontalAxis) < 0 && next == true && lockSelection == false)
+			{
+				next = false;
+			}
 		}
 	}
 
