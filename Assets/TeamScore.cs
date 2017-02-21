@@ -35,15 +35,24 @@ public class TeamScore : MonoBehaviour
 			print("Red Scored");
 			redCount += 1;
 			SetRedScoreText();
-			other.GetComponent<OrbCollect>().isCollected = false;
+
 		}
 		if(other.gameObject.tag == "Blue")
 		{
 			print("Blue Scored");
 			blueCount += 1;
 			SetBlueScoreText();
-			other.GetComponent<OrbCollect>().isCollected = false;
+
 		}
+//		if(other.gameObject.tag == "Red")
+//		{
+//			print("Red Scored");
+//			redCount += 1;
+//			SetRedScoreText();
+//
+//		}
+
+
 	}
 
 	void SetRedScoreText()

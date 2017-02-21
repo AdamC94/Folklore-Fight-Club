@@ -4,41 +4,53 @@ using UnityEngine;
 
 public class OrbCollect : MonoBehaviour 
 {
-
-	public Transform fromThis;
-	public Transform toThis;
+	public Transform player;
+	Transform fromThis;
 	public Transform resetPoint;
 	public float speed;
 	public float rotSpeed = 0.1f;
 	public bool isCollected = false;
 
-	// Use this for initialization
-	void Start () 
-	{
-		toThis = resetPoint;
-	}
 
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
-		//transform.rotation = Quaternion.Slerp(fromThis.rotation, toThis.rotation, Time.deltaTime * rotSpeed); 
-		transform.position = Vector3.MoveTowards(fromThis.position , toThis.position , Time.deltaTime * speed);
-
-		if(isCollected == false)
+		
+		if(isCollected == true)
 		{
-			toThis = resetPoint;
+			
+		//transform.rotation = Quaternion.Slerp(fromThis.rotation, toThis.rotation, Time.deltaTime * rotSpeed); 
+			transform.position = Vector3.MoveTowards(transform.position , player.position , Time.fixedDeltaTime * speed);
+		}
+		else {
+			//transform.position = resetPoint.position;
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag == "Player")
+		
+		if(other.gameObject.tag == "RedTeam" && !isCollected) 
 		{
 			isCollected = true;
-			toThis = other.gameObject.transform;
-		}else{
+			this.tag = "Red";
+		}
+		if(other.gameObject.tag == "BlueTeam" && !isCollected) 
+		{
+			isCollected = true;
+			this.tag = "Blue";
+		}
+		if(other.gameObject.tag == "BlueScore")
+		{
 			isCollected = false;
-
+			transform.position = resetPoint.position;
+			this.tag = "Untagged";
+		}
+		if(other.gameObject.tag == "RedScore")
+		{
+			isCollected = false;
+			transform.position = resetPoint.position;
+			this.tag = "Untagged";
 		}
 	}
 }
