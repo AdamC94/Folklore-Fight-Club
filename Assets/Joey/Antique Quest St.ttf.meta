@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 32acc372b4f85c3459dbdf6f22a39c46
+timeCreated: 1487761127
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Antique Quest St
+  fontNames:
+  - Antique Quest St
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
