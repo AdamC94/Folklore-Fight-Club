@@ -11,11 +11,15 @@ public class OrbCollect : MonoBehaviour
 	public float rotSpeed = 0.1f;
 	public bool isCollected = false;
 
+	public GameObject currentPlayer;
 
+	void Update()
+	{
+		player = currentPlayer.transform;
+	}
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		
 		if(isCollected == true)
 		{
 			
@@ -29,28 +33,39 @@ public class OrbCollect : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag == "BlueTeam" && !isCollected) 
+		if(other.gameObject.tag == "GoldTeam" && !isCollected) 
 		{
+			
+			print("Gold picked up");
 			isCollected = true;
-			this.tag = "Blue";
+			this.tag = "Gold";
+			//player.position = other.gameObject.transform.position;
+			currentPlayer = other.gameObject;
 		}
-		if(other.gameObject.tag == "BlueScore")
+		if(other.gameObject.tag == "GoldScore")
 		{
+			print("Gold scored");
 			isCollected = false;
 			transform.position = resetPoint.position;
 			this.tag = "Untagged";
+			//player = null;
 		}
-
-		if(other.gameObject.tag == "RedTeam" && !isCollected) 
+		if(other.gameObject.tag == "SilverTeam" && !isCollected) 
 		{
+			
+			print("Silver picked up");
 			isCollected = true;
-			this.tag = "Red";
+			this.tag = "Silver";
+			//player.position = other.gameObject.transform.position;
+			currentPlayer = other.gameObject;
 		}
-		if(other.gameObject.tag == "RedScore")
+		if(other.gameObject.tag == "SilverScore")
 		{
+			print("Silver scored");
 			isCollected = false;
 			transform.position = resetPoint.position;
 			this.tag = "Untagged";
+			//player = null;
 		}
 	}
 }
