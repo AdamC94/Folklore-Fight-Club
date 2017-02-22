@@ -44,15 +44,7 @@ public class TeamScore : MonoBehaviour
 			SetBlueScoreText();
 
 		}
-//		if(other.gameObject.tag == "Red")
-//		{
-//			print("Red Scored");
-//			redCount += 1;
-//			SetRedScoreText();
-//
-//		}
-
-
+			
 	}
 
 	void SetRedScoreText()

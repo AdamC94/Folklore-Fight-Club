@@ -29,12 +29,6 @@ public class OrbCollect : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		
-		if(other.gameObject.tag == "RedTeam" && !isCollected) 
-		{
-			isCollected = true;
-			this.tag = "Red";
-		}
 		if(other.gameObject.tag == "BlueTeam" && !isCollected) 
 		{
 			isCollected = true;
@@ -46,6 +40,12 @@ public class OrbCollect : MonoBehaviour
 			transform.position = resetPoint.position;
 			this.tag = "Untagged";
 		}
+
+		if(other.gameObject.tag == "RedTeam" && !isCollected) 
+		{
+			isCollected = true;
+			this.tag = "Red";
+		}
 		if(other.gameObject.tag == "RedScore")
 		{
 			isCollected = false;
@@ -54,3 +54,4 @@ public class OrbCollect : MonoBehaviour
 		}
 	}
 }
+
