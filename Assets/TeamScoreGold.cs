@@ -5,28 +5,29 @@ using UnityEngine.UI;
 
 public class TeamScoreGold : MonoBehaviour 
 {
-	
-	public Text blueScoreText;
+	public Text goldScoreText;
+	public Text silverScoreText;
 	public Text winText;
 
 	public GameObject Orb;
 
-
-	public int goldCount;
+	private int goldCount;
+	private int silverCount;
 
 	// Use this for initialization
 	void Start () 
 	{
-		;
+		
 		goldCount = 0;
-		SetBlueScoreText();
-	
+		SetGoldScoreText();
+		silverCount = 0;
+		SetSilverScoreText();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		blueScoreText.text = goldCount.ToString();
+		
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -34,17 +35,30 @@ public class TeamScoreGold : MonoBehaviour
 		{
 			print("Gold Scored");
 			goldCount += 1;
-			print(goldCount);
-			SetBlueScoreText();
+			SetGoldScoreText();
+		}
+		if(other.gameObject.tag == "Silver")
+		{
+			print("Silver Scored");
+			silverCount += 1;
+			SetSilverScoreText();
 		}
 			
 	}
-	void SetBlueScoreText()
+	void SetGoldScoreText()
 	{
-		blueScoreText.text = "Gold Team: " + goldCount.ToString ();
+		goldScoreText.text = "Gold: " + goldCount.ToString ();
 		if(goldCount >= 5)
 		{
 			winText.text = "Gold Team Win";
+		}
+	}
+	void SetSilverScoreText()
+	{
+		silverScoreText.text = "Silver: " + silverCount.ToString ();
+		if(silverCount >= 5)
+		{
+			winText.text = "Silver Team Win";
 		}
 	}
 }

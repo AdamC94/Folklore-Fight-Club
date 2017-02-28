@@ -11,8 +11,7 @@ public class TeamScoreSilver : MonoBehaviour
 
 	public GameObject Orb;
 
-	public int silverCount;
-
+	private int silverCount;
 
 	// Use this for initialization
 	void Start () 
@@ -25,7 +24,7 @@ public class TeamScoreSilver : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		silverScoreText.text = silverCount.ToString();
+		
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -33,7 +32,7 @@ public class TeamScoreSilver : MonoBehaviour
 		{
 			print("Silver Scored");
 			silverCount += 1;
-			print(silverCount);
+			//print(silverCount);
 			SetSilverScoreText();
 
 		}
@@ -41,7 +40,7 @@ public class TeamScoreSilver : MonoBehaviour
 
 	void SetSilverScoreText()
 	{
-		silverScoreText.text = "Silver Team: " + silverCount.ToString ();
+		silverScoreText.text = "Silver: " + silverCount.ToString ();
 		if(silverCount >= 5)
 		{
 			winText.text = "Silver Team Win";
