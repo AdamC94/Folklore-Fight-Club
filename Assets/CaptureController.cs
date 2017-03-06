@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CaptureController : MonoBehaviour 
 {
@@ -9,6 +10,11 @@ public class CaptureController : MonoBehaviour
 
 	private float goldCapPerc = 0;
 	private float silverCapPerc = 0;
+
+	public float sliderSpeed; 
+
+	public GameObject scoreSlider;
+	// speed of capture
 	public float capSpeed = 2.0f;
 
 	//AREA SHOWN
@@ -17,12 +23,15 @@ public class CaptureController : MonoBehaviour
 	public GameObject Neutral;
 
 
+
 	// Use this for initialization
 	void Start () 
 	{
 		gold.SetActive(false);
 		silver.SetActive(false);
 		Neutral.SetActive(true);
+		//scoreSlider.GetComponent<Scrollbar>().value = 0.5f;
+
 	}
 	
 	// Update is called once per frame
@@ -32,16 +41,19 @@ public class CaptureController : MonoBehaviour
 		{
 			goldCapPerc += Time.deltaTime * capSpeed;
 			silverCapPerc -= Time.deltaTime * capSpeed;
+
 		}
 		if(silverTeam == true)
 		{
 			goldCapPerc -= Time.deltaTime * capSpeed;
 			silverCapPerc += Time.deltaTime * capSpeed;
+
 		}
 		if(goldTeam == true && silverTeam == true)
 		{
 			goldCapPerc = goldCapPerc;
 			silverCapPerc = silverCapPerc;
+
 		}
 		if(goldCapPerc >= 100)
 		{
@@ -49,6 +61,7 @@ public class CaptureController : MonoBehaviour
 			gold.SetActive(true);
 			silver.SetActive(false);
 			Neutral.SetActive(false);
+			PosSlider();
 		}
 		if(silverCapPerc >= 100)
 		{
@@ -56,12 +69,14 @@ public class CaptureController : MonoBehaviour
 			gold.SetActive(false);
 			silver.SetActive(true);
 			Neutral.SetActive(false);
+			NegSlider();
 		}
 		if(goldCapPerc <= 50 && silverCapPerc <= 51)
 		{
 			gold.SetActive(false);
 			silver.SetActive(false);
 			Neutral.SetActive(true);
+			NeutralSlider();
 		}
 		if(goldCapPerc <= 0)
 		{
@@ -71,6 +86,19 @@ public class CaptureController : MonoBehaviour
 		{
 			silverCapPerc = 0;
 		}
+	}
+	void PosSlider()
+	{
+		scoreSlider.GetComponent<Scrollbar>().value += sliderSpeed / 100;
+	}
+	void NegSlider()
+	{
+		scoreSlider.GetComponent<Scrollbar>().value -= sliderSpeed / 100;
+	}
+	void NeutralSlider()
+	{
+		scoreSlider.GetComponent<Scrollbar>().value = scoreSlider.GetComponent<Scrollbar>().value;
+
 	}
 //	void OnGUI()
 //	{

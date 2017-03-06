@@ -38,7 +38,7 @@ public class OrbCollect : MonoBehaviour
 		}
 		if(other.gameObject.tag == "GoldScore")
 		{
-			print("Gold scored");
+			//print("Gold scored");
 			isCollected = false;
 			transform.position = resetPoint.position;
 			this.tag = "Untagged";
@@ -53,7 +53,7 @@ public class OrbCollect : MonoBehaviour
 		}
 		if(other.gameObject.tag == "SilverScore")
 		{
-			print("Silver scored");
+			//print("Silver scored");
 			isCollected = false;
 			transform.position = resetPoint.position;
 			this.tag = "Untagged";

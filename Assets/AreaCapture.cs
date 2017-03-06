@@ -5,10 +5,11 @@ using UnityEngine;
 public class AreaCapture : MonoBehaviour 
 {
 	CaptureController capControl; 
+	public GameObject area;
 	// Use this for initialization
 	void Start () 
 	{
-		capControl = GameObject.Find("CaptureZone").GetComponent<CaptureController>();
+		capControl = area.GetComponent<CaptureController>();
 	}
 
 	void OnTriggerEnter(Collider other)
