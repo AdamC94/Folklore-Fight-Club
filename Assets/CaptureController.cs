@@ -21,7 +21,7 @@ public class CaptureController : MonoBehaviour
 	public GameObject gold;
 	public GameObject silver;
 	public GameObject Neutral;
-
+	public Text winText;
 
 
 	// Use this for initialization
@@ -86,14 +86,22 @@ public class CaptureController : MonoBehaviour
 		{
 			silverCapPerc = 0;
 		}
+		if(scoreSlider.GetComponent<Scrollbar>().value >= 1f)
+		{
+			winText.text = "Gold Team Win";
+		}
+		if(scoreSlider.GetComponent<Scrollbar>().value <= 0f)
+		{
+			winText.text = "Silver Team Win";
+		}
 	}
 	void PosSlider()
 	{
-		scoreSlider.GetComponent<Scrollbar>().value += sliderSpeed / 100;
+			scoreSlider.GetComponent<Scrollbar>().value += sliderSpeed / 1000;
 	}
 	void NegSlider()
 	{
-		scoreSlider.GetComponent<Scrollbar>().value -= sliderSpeed / 100;
+		scoreSlider.GetComponent<Scrollbar>().value -= sliderSpeed / 1000;
 	}
 	void NeutralSlider()
 	{
