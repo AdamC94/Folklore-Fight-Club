@@ -13,6 +13,10 @@ public class OrbCollect : MonoBehaviour
 
 	public GameObject currentPlayer;
 
+	TeamScoreGold goldScore;
+
+	public string hitTag;
+	public string hitTag1;
 	void Update()
 	{
 		player = currentPlayer.transform;
@@ -35,6 +39,7 @@ public class OrbCollect : MonoBehaviour
 			isCollected = true;
 			this.tag = "Gold";
 			currentPlayer = other.gameObject;
+		
 		}
 		if(other.gameObject.tag == "GoldScore")
 		{
@@ -52,6 +57,20 @@ public class OrbCollect : MonoBehaviour
 			currentPlayer = other.gameObject;
 		}
 		if(other.gameObject.tag == "SilverScore")
+		{
+			print("Silver scored");
+			isCollected = false;
+			transform.position = resetPoint.position;
+			this.tag = "Untagged";
+		}
+		if(other.gameObject.tag == hitTag)
+		{
+			//print("Silver scored");
+			isCollected = false;
+			transform.position = resetPoint.position;
+			this.tag = "Untagged";
+		}
+		if(other.gameObject.tag == hitTag1)
 		{
 			//print("Silver scored");
 			isCollected = false;

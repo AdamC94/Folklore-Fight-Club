@@ -209,7 +209,6 @@ ModelImporter:
     7400016: metarig_metarig_Strike_1_metarig_Strike_1
     7400018: metarig_metarig_Strike_2_metarig_Strike_2
     9500000: //RootNode
-    11100000: //RootNode
     13700000: Cube
     13700002: Cube_002
     13700004: Cylinder
@@ -2383,7 +2382,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

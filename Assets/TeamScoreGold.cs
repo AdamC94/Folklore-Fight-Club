@@ -51,7 +51,7 @@ public class TeamScoreGold : MonoBehaviour
 	}
 	void SetGoldScoreText()
 	{
-		goldScoreText.text = "Gold: " + goldCount.ToString ();
+		//goldScoreText.text = "Gold: " + goldCount.ToString ();
 		if(goldCount == 1)
 		{
 			Goldpaper[0].SetActive(true);
@@ -76,7 +76,7 @@ public class TeamScoreGold : MonoBehaviour
 	}
 	void SetSilverScoreText()
 	{
-		silverScoreText.text = "Silver: " + silverCount.ToString ();
+		//silverScoreText.text = "Silver: " + silverCount.ToString ();
 		if(silverCount == 1)
 		{
 			Silverpaper[0].SetActive(true);
