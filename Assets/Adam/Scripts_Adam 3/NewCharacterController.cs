@@ -23,6 +23,7 @@ public class NewCharacterController : MonoBehaviour
 	float currentSpeed;
 	float velocityY;
 
+	public float xPosition;
 	public string horizontal;
 	public string vertical;
 
@@ -62,6 +63,7 @@ public class NewCharacterController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		SetTransformX(xPosition);
 		Vector2 input = new Vector2(Input.GetAxisRaw(horizontal), 0 /*Input.GetAxisRaw(vertical)*/);
 		Vector2 inputDirection = input.normalized;
 
@@ -105,5 +107,8 @@ public class NewCharacterController : MonoBehaviour
 
 		//float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDirection.magnitude;
 		//animator.SetFloat(animatorBlendFloat, animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+	}
+	void SetTransformX(float n){
+		transform.position = new Vector3(n, transform.position.y, transform.position.z);
 	}
 }

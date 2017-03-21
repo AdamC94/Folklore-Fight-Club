@@ -31,7 +31,7 @@ public class Health_Damage : MonoBehaviour
 	public bool[] animTrigs; //----------------------------------animation triggers to trigger the animations in the animator
 
 	public bool dead; //-----------------------------------------shows whether the player is dead or not
-
+	public string teamTag;
 	public float reSpawnTime; //---------------------------------re spawn timer
 	private float startRespawn; //-------------------------------players respawn time for resetting the re spawn time
 
@@ -87,15 +87,17 @@ public class Health_Damage : MonoBehaviour
 			if(health <= 0) //-------------------------------------if the health is less than or equal to 0
 			{
 				dead = true; //------------------------------------set dead to equal to true
-
+			
 				if(dead == true) //--------------------------------if dead bool is equal to true
 				{
 					anim.SetBool(animStrings[1], true); //---------set the anim animator boolean that is called the string at animStrings index 1 to equal true
+					gameObject.tag = "DEATH";
 
 					reSpawnTime -= 1 * Time.deltaTime; //----------reSpawn timer - 1 per second
 
 					if(reSpawnTime <= 0) //------------------------if the reSpawn time is less than or equal to 0
 					{
+						gameObject.tag = "friendliesGOLD";
 						goldLivePool -= 1; //----------------------gold live pool minuses 1
 
 						dead = false; //-------------------------- set dead to equal false
@@ -116,13 +118,13 @@ public class Health_Damage : MonoBehaviour
 				if(dead == true) //---------------------------------if dead bool is equal to true
 				{
 					anim.SetBool(animStrings[1], true); //----------set the anim animator boolean that is called the string at animStrings index 1 to equal true
-
+					gameObject.layer = 27;
 					reSpawnTime -= 1 * Time.deltaTime; //-----------reSpawn Timer - 1 per second
 
 					if(reSpawnTime <= 0) //-------------------------if reSpawn time is less thn or equal to 0
 					{
+						gameObject.layer = 26;
 						silverLivePool -= 1; //---------------------silver live pool minuses 1
-
 						dead = false; //----------------------------set dead to equal to false
 						health = maxHealth; //----------------------health is equal to the max Health
 						reSpawnTime = startRespawn; //--------------reSpawn time is equal to the start reSpawn

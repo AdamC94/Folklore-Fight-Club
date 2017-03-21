@@ -13,7 +13,7 @@ public class attacks_and_hitboxes : MonoBehaviour
 	public string[] animStrings;
 	public bool[] trigs;
 
-	public Collider[] attackHitBoxes;
+	public GameObject[] attackHitBoxes;
 
 	public string layerMaskName;
 
@@ -40,6 +40,11 @@ public class attacks_and_hitboxes : MonoBehaviour
 
 		checkForAttackHits = new bool[animStrings.Length];
 
+		for(int i = 0; i < attackHitBoxes.Length; i ++)
+		{
+			attackHitBoxes[i].SetActive(false);
+		}
+
 	}
 
 	void AttackIndex()
@@ -54,23 +59,6 @@ public class attacks_and_hitboxes : MonoBehaviour
 		{
 			attackIndex = 1;
 			attacking = true;
-		}
-	}
-
-	bool hit;
-
-	void attack(Collider col)
-	{
-		hit = false;
-		Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask(layerMaskName));
-		foreach(Collider c in cols)
-		{
-			if(hit == false)
-			{
-				Debug.Log(c.name);
-				checkForAttackHits[attackIndex] = false;
-				hit = true;
-			}
 		}
 	}
 
@@ -100,7 +88,7 @@ public class attacks_and_hitboxes : MonoBehaviour
 
 		if(checkForAttackHits[attackIndex] == true)
 		{
-			attack(attackHitBoxes[attackIndex]);
+			attackHitBoxes[attackIndex].SetActive(true);
 		}
 		if(attacking == true)
 		{
@@ -109,6 +97,7 @@ public class attacks_and_hitboxes : MonoBehaviour
 			if(attackCooldowns[attackIndex] <= 0)
 			{
 				attacking = false;
+				attackHitBoxes[attackIndex].SetActive(false);
 				checkForAttackHits[attackIndex] = false;
 			}
 		}

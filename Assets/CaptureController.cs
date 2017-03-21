@@ -97,11 +97,11 @@ public class CaptureController : MonoBehaviour
 	}
 	void PosSlider()
 	{
-			scoreSlider.GetComponent<Scrollbar>().value += sliderSpeed / 1000;
+			scoreSlider.GetComponent<Scrollbar>().value += sliderSpeed / 100;
 	}
 	void NegSlider()
 	{
-		scoreSlider.GetComponent<Scrollbar>().value -= sliderSpeed / 1000;
+		scoreSlider.GetComponent<Scrollbar>().value -= sliderSpeed / 100;
 	}
 	void NeutralSlider()
 	{
